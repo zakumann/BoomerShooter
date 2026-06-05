@@ -41,13 +41,13 @@ void UObjectsPool::BeginPlay()
 	
 }
 
-APooledObject* UObjectsPool::SpawnPooledObject()
+APooledObject* UObjectsPool::SpawnPooledObject(FVector SpawnLocation, FRotator SpawnRotation)
 {
 	for (APooledObject* PoolableActor : ObjectPool)
 	{
 		if (PoolableActor != nullptr && !PoolableActor->IsActive())
 		{
-			PoolableActor->TeleportTo(FVector(0, 0, 0), FRotator(0, 0, 0));
+			PoolableActor->TeleportTo(SpawnLocation, SpawnRotation);
 			PoolableActor->SetLifeSpan(PooledObjectLifeSpan);
 			PoolableActor->SetActive(true);
 			SpawnedPoolIndexes.Add(PoolableActor->GetPoolIndex());

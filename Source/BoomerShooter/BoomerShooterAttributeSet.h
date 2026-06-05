@@ -34,6 +34,15 @@ public:
 	FGameplayAttributeData Armor;
 	ATTRIBUTE_ACCESSORS(UBoomerShooterAttributeSet, Armor);
 
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData Bullets;
+	ATTRIBUTE_ACCESSORS(UBoomerShooterAttributeSet, Bullets);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Attributes")
+	FGameplayAttributeData Rockets;
+	ATTRIBUTE_ACCESSORS(UBoomerShooterAttributeSet, Rockets);
+
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual bool PreGameplayEffectExecute(struct FGameplayEffectModCallbackData& Data) override;
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 };

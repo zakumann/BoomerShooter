@@ -18,7 +18,7 @@ public:
 	UObjectsPool();
 
 	UFUNCTION(BlueprintCallable, Category = "Objects Pool")
-	APooledObject* SpawnPooledObject();
+	APooledObject* SpawnPooledObject(FVector SpawnLocation, FRotator SpawnRotation);
 
 	UPROPERTY(EditAnywhere, Category = "Objects Pool")
 	TSubclassOf<class APooledObject> PooledObjectSubclass;
