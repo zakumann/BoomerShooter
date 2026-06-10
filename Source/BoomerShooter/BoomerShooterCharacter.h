@@ -39,6 +39,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	int MaxRockets = 30;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	int MaxShells = 50;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
