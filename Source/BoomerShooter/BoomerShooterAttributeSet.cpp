@@ -33,6 +33,10 @@ void UBoomerShooterAttributeSet::PreAttributeChange(const FGameplayAttribute& At
 	{
 		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxShells);
 	}
+	else if (Attribute == GetHeavyBulletsAttribute())
+	{
+		NewValue = FMath::Clamp<float>(NewValue, 0, RetroChar->MaxHeavyBullets);
+	}
 }
 
 bool UBoomerShooterAttributeSet::PreGameplayEffectExecute(struct FGameplayEffectModCallbackData& Data)
@@ -71,6 +75,11 @@ bool UBoomerShooterAttributeSet::PreGameplayEffectExecute(struct FGameplayEffect
 			SetShells(RetroChar->MaxShells);
 			return false;
 		}
+		else if (Data.EvaluatedData.Attribute == GetHeavyBulletsAttribute() && GetHeavyBullets() + AbsoluteMagnitude >= RetroChar->MaxHeavyBullets)
+		{
+			SetHeavyBullets(RetroChar->MaxHeavyBullets);
+			return false;
+		}
 	}
 	else
 	{
@@ -104,5 +113,9 @@ void UBoomerShooterAttributeSet::PostGameplayEffectExecute(const FGameplayEffect
 	else if (Data.EvaluatedData.Attribute == GetShellsAttribute() && GetShells() < 0)
 	{
 		SetShells(0);
+	}
+	else if (Data.EvaluatedData.Attribute == GetHeavyBulletsAttribute() && GetHeavyBullets() < 0)
+	{
+		SetHeavyBullets(0);
 	}
 }

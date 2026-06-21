@@ -42,6 +42,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	int MaxShells = 50;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	int MaxHeavyBullets = 200;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
